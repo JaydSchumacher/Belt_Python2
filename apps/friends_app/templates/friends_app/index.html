@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {%if messages%}
+        {%for message in messages%}
+            <p>{{message}}</p>
+        {%endfor%}
+    {%endif%}
+    <a href="/logout">Logout</a>
+    <h1>Hello {{curUserName}}</h1>
+    <h3>Here is a list of your friends</h3>
+    <table>
+        <thead>
+            <th>Alias</th>
+            <th>Action</th>
+        </thead>
+        <td>
+        {%for friend in curUser.friends.all%}
+        <p>{{friend.alias}}       |</p>
+        {%endfor%}
+        </td>
+        <td>
+            {%for friend in curUser.friends.all%}
+            <p><a href="/friends/show/{{friend.id}}">View Profile</a>    |  <a href="/friends/remove/{{friend.id}}">Remove as Friend</a>   |</p>
+            {%endfor%}
+        </td>
+    </table>
+    <h3>Other Users not on your friends list: </h3>
+    <table>
+        <thead>
+            <th>Alias</th>
+            <th>Action</th>
+        </thead>
+        <td>
+        {%for friend in otherUser.all%}
+        <p>{{friend.alias}}</p>
+        {%endfor%}
+        </td>
+        <td>
+            {%for friend in otherUser.all%}
+            <p></p><a href="/friends/show/{{friend.id}}">View Profile</a>     |   <a href="/friends/add/{{friend.id}}">Add as Friend</a></p>
+            {%endfor%}            
+        </td>
+        
+    </table>
+</body>
+</html>
