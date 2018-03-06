@@ -1,8 +1,7 @@
 from django.conf.urls import url
 from . import views
 
-def test(request):
-    print 705
+
 
 urlpatterns = [
     url(r'^$', views.index),
